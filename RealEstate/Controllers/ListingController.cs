@@ -41,5 +41,16 @@ namespace RealEstate.Controllers
             }
             else return View(lst);
         }
+
+        [HttpPost]
+        public IActionResult Edit(Listing obj) 
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Listings.Update(obj);
+                _db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
