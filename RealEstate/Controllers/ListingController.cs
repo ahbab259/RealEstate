@@ -32,6 +32,14 @@ namespace RealEstate.Controllers
 
             return RedirectToAction("Index");
         }
-
+        public IActionResult Edit(Guid Id)
+        {
+            Listing? lst = _db.Listings.Find(Id);
+            if(lst == null)
+            {
+                return NotFound();
+            }
+            else return View(lst);
+        }
     }
 }
