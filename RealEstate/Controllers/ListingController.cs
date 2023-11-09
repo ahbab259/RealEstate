@@ -41,7 +41,6 @@ namespace RealEstate.Controllers
             }
             else return View(lst);
         }
-
         [HttpPost]
         public IActionResult Edit(Listing obj) 
         {
@@ -51,6 +50,15 @@ namespace RealEstate.Controllers
                 _db.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+        public IActionResult Details(Guid Id)
+        {
+            Listing? lst = _db.Listings.Find(Id);
+            if (lst == null)
+            {
+                return NotFound();
+            }
+            else return View(lst);
         }
     }
 }

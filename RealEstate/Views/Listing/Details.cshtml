@@ -1,0 +1,58 @@
+﻿@model Listing
+
+<div class="border p-3 mt-4">
+    <div class="row mb-3">
+        <div class="col">
+            <h2 class="text-primary">Details</h2>
+            <hr />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="HouseNumber" class="form-label"></label>
+            <input asp-for="HouseNumber" disabled type="text" class="form-control" placeholder="Desired house number" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="Road" class="form-label"></label>
+            <input asp-for="Road" disabled type="text" class="form-control" placeholder="Desired Road" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="ZIP" class="form-label"></label>
+            <input asp-for="ZIP" disabled type="text" class="form-control" placeholder="Desired ZIP" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="City" class="form-label"></label>
+            <input asp-for="City" disabled type="text" class="form-control" placeholder="Desired City" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="State" class="form-label"></label>
+            <input asp-for="State" disabled type="text" class="form-control" placeholder="Desired State" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="Country" class="form-label"></label>
+            <input asp-for="Country" disabled type="text" class="form-control" placeholder="Desired Country" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label asp-for="Price" class="form-label"></label>
+            <input asp-for="Price" disabled type="text" class="form-control" placeholder="Desired Price" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a asp-controller="Listing" asp-action="Index" class="btn btn-outline-secondary">Back</a>
+        </div>
+    </div>
+</div>
+
