@@ -11,8 +11,9 @@ namespace RealEstate.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(string? orderby)
         {
+
             List<Listing> listings = new List<Listing>();
             listings = _db.Listings.ToList();
             return View(listings);
@@ -59,6 +60,20 @@ namespace RealEstate.Controllers
                 return NotFound();
             }
             else return View(lst);
+        }
+        public IActionResult Delete(Guid Id)
+        {
+            Listing? lst = _db.Listings.Find(Id);
+            if (lst == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _db.Remove(lst);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
     }
 }
