@@ -12,10 +12,15 @@ namespace RealEstate.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(string? term)
+        public IActionResult Index(string? term, string? orderBy)
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+
             var listingData = new ListingViewModel();
+            listingData.PriceSortOrder = string.IsNullOrEmpty(orderBy) ? "price_desc" : "";
+            listingData.CitySortOrder = string.IsNullOrEmpty(orderBy) ? "city_desc" : "";
+
+
             var listings = (from lst in _db.Listings
                             where term == "" || lst.City.ToLower().Contains(term)
                             select new Listing
@@ -29,7 +34,21 @@ namespace RealEstate.Controllers
                                 State = lst.State,
                                 ZIP = lst.ZIP
                             });
+            switch (orderBy)
+            {
+                case "price_desc":
+                    listings = listings.OrderBy(x => x.Price);
+                    break;
+
+                case "city_desc":
+                    listings = listings.OrderBy(x => x.City);
+                    break;
+
+                default: break;
+            }
+
             listingData.Listings = listings;
+
             return View(listingData);
         }
         public IActionResult Create()

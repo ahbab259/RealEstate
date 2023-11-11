@@ -37,7 +37,7 @@
                 </th>
                 <th>
                     City &nbsp;&nbsp;
-                    <a asp-page="/Listing" class="sort-link" asp-route-sortby="City">
+                    <a href="/Listing/Index?orderBy=@Model.CitySortOrder">
                         <i class="bi bi-sort-down-alt"></i>
                     </a>
                 </th>
@@ -49,7 +49,7 @@
                 </th>
                 <th>
                     Price &nbsp;&nbsp;
-                    <a asp-page="/Listing" class="sort-link" asp-route-sortby="Price" value="Price">
+                    <a href="/Listing/Index?orderBy=@Model.PriceSortOrder">
                         <i class="bi bi-sort-down-alt"></i>
                     </a>
                 </th>
