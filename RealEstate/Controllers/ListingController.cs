@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using RealEstate.Data;
 using RealEstate.Models;
 
@@ -11,16 +12,29 @@ namespace RealEstate.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(string? orderby)
+        public IActionResult Index(string? term)
         {
-
-            List<Listing> listings = new List<Listing>();
-            listings = _db.Listings.ToList();
-            return View(listings);
+            term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
+            var listingData = new ListingViewModel();
+            var listings = (from lst in _db.Listings
+                            where term == "" || lst.City.ToLower().Contains(term)
+                            select new Listing
+                            {
+                                Id = lst.Id,
+                                City = lst.City,
+                                Country = lst.Country,
+                                HouseNumber = lst.HouseNumber,
+                                Price = lst.Price,
+                                Road = lst.Road,
+                                State = lst.State,
+                                ZIP = lst.ZIP
+                            });
+            listingData.Listings = listings;
+            return View(listingData);
         }
-        public IActionResult Create() 
+        public IActionResult Create()
         {
-            return View(); 
+            return View();
         }
         [HttpPost]
         public IActionResult Create(Listing obj)
@@ -36,14 +50,14 @@ namespace RealEstate.Controllers
         public IActionResult Edit(Guid Id)
         {
             Listing? lst = _db.Listings.Find(Id);
-            if(lst == null)
+            if (lst == null)
             {
                 return NotFound();
             }
             else return View(lst);
         }
         [HttpPost]
-        public IActionResult Edit(Listing obj) 
+        public IActionResult Edit(Listing obj)
         {
             if (ModelState.IsValid)
             {
