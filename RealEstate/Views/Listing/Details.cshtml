@@ -1,6 +1,6 @@
 ﻿@model Listing
 
-<div class="border p-3 mt-4">
+<div class="border p-3 mt-4 col-md-4">
     <div class="row mb-3">
         <div class="col">
             <h2 class="text-primary">Details</h2>
@@ -8,50 +8,64 @@
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-md-6">
             <label asp-for="HouseNumber" class="form-label"></label>
-            <input asp-for="HouseNumber" disabled type="text" class="form-control" placeholder="Desired house number" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="HouseNumber" disabled type="text" />
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-md-6">
             <label asp-for="Road" class="form-label"></label>
-            <input asp-for="Road" disabled type="text" class="form-control" placeholder="Desired Road" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="Road" disabled type="text" />
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-md-6">
             <label asp-for="ZIP" class="form-label"></label>
-            <input asp-for="ZIP" disabled type="text" class="form-control" placeholder="Desired ZIP" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="ZIP" disabled type="text" />
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-md-6">
             <label asp-for="City" class="form-label"></label>
-            <input asp-for="City" disabled type="text" class="form-control" placeholder="Desired City" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="City" disabled type="text" />
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-md-6">
             <label asp-for="State" class="form-label"></label>
-            <input asp-for="State" disabled type="text" class="form-control" placeholder="Desired State" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="State" disabled type="text" />
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-md-6">
             <label asp-for="Country" class="form-label"></label>
-            <input asp-for="Country" disabled type="text" class="form-control" placeholder="Desired Country" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="Country" disabled type="text" />
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col">
+        <div class="col-md-6">
             <label asp-for="Price" class="form-label"></label>
-            <input asp-for="Price" disabled type="text" class="form-control" placeholder="Desired Price" />
+        </div>
+        <div class="col-md-6">
+            <input asp-for="Price" disabled type="text" />
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <a asp-controller="Listing" asp-action="Index" class="btn btn-outline-secondary">Back</a>
+            <a asp-controller="Listing" asp-action="Index" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>

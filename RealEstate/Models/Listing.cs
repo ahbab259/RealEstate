@@ -7,6 +7,7 @@ namespace RealEstate.Models
     {
         [Key]
         public Guid Id { get; set; }
+        [DisplayName("House Number")]
         public string HouseNumber { get; set; }
         public string Road { get; set; }
         public string ZIP { get; set; }

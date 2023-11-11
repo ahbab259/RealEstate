@@ -12,7 +12,7 @@ namespace RealEstate.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(string? term, string? orderBy)
+        public IActionResult Index(string? term, string? orderBy, int currentpage = 1)
         {
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
 
@@ -46,8 +46,20 @@ namespace RealEstate.Controllers
 
                 default: break;
             }
+            int totalRecords = listings.Count();
+            int pageSize = 5;
+            int totalPages = (int)Math.Ceiling((decimal)totalRecords/pageSize);
+
+            listings = listings.Skip((currentpage - 1) * pageSize).Take(pageSize);
+
 
             listingData.Listings = listings;
+
+            listingData.CurrentPage = currentpage;
+            listingData.PageSize = pageSize;
+            listingData.TotalPages = totalPages;
+            listingData.Term = term;
+            listingData.OrderBy = orderBy;
 
             return View(listingData);
         }
