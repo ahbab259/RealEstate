@@ -1,5 +1,9 @@
 using RealEstate.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Data;
+using RealEstate.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,5 +31,4 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Listing}/{action=Index}/{id?}");
-
 app.Run();

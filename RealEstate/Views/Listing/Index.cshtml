@@ -20,7 +20,7 @@
         <form asp-action="Index">
             <div class="row">
                 <div class="col-md-3">
-                    <input name="term" class="form-control" placeholder="Search by City" />
+                    <input name="term" class="form-control" placeholder="Search by City" />@Model.Term
                 </div>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-info"><i class="bi bi-search"></i> Search</button>
@@ -81,7 +81,7 @@
             @if(Model.CurrentPage > 1)
             {
                 <li class="page-item">
-                    <a class="page-link" href="/Listing/Index?term=@Model.Term & orderBy=@Model.OrderBy&currentPage=@Model.CurrentPage-1" aria-label="Previous">
+                    <a class="page-link" href="/Listing/Index?term=@Model.Term&orderBy=@Model.OrderBy&currentPage=@Model.CurrentPage-1" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>

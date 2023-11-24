@@ -17,9 +17,10 @@ namespace RealEstate.Controllers
             term = string.IsNullOrEmpty(term) ? "" : term.ToLower();
 
             var listingData = new ListingViewModel();
-            listingData.PriceSortOrder = string.IsNullOrEmpty(orderBy) ? "price_desc" : "";
-            listingData.CitySortOrder = string.IsNullOrEmpty(orderBy) ? "city_desc" : "";
-
+            //listingData.PriceSortOrder = string.IsNullOrEmpty(orderBy) ? "price_desc" : "";
+            listingData.PriceSortOrder = orderBy == "price_desc" ? "price_asc" : "price_desc";
+            //listingData.CitySortOrder = string.IsNullOrEmpty(orderBy) ? "city_desc" : "";
+            listingData.CitySortOrder = orderBy == "city_desc" ? "city_asc" : "city_desc";
 
             var listings = (from lst in _db.Listings
                             where term == "" || lst.City.ToLower().Contains(term)
@@ -37,24 +38,28 @@ namespace RealEstate.Controllers
             switch (orderBy)
             {
                 case "price_desc":
+                    listings = listings.OrderByDescending(x => x.Price);
+                    break;
+
+                case "price_asc":
                     listings = listings.OrderBy(x => x.Price);
                     break;
 
                 case "city_desc":
+                    listings = listings.OrderByDescending(x => x.City);
+                    break;
+
+                case "city_asc":
                     listings = listings.OrderBy(x => x.City);
                     break;
 
                 default: break;
             }
             int totalRecords = listings.Count();
-            int pageSize = 5;
+            int pageSize = 10;
             int totalPages = (int)Math.Ceiling((decimal)totalRecords/pageSize);
-
             listings = listings.Skip((currentpage - 1) * pageSize).Take(pageSize);
-
-
             listingData.Listings = listings;
-
             listingData.CurrentPage = currentpage;
             listingData.PageSize = pageSize;
             listingData.TotalPages = totalPages;
